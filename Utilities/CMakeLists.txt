@@ -10,7 +10,7 @@ IF( IGSTK_USE_ArucoTracker )
   SUBDIRS( Aruco )
 ENDIF( IGSTK_USE_ArucoTracker )
 
-SUBDIRS( SceneGraphVisualization )
+#SUBDIRS( SceneGraphVisualization )
 
 
 
