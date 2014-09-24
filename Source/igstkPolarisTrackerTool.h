@@ -18,6 +18,9 @@
 #ifndef __igstkPolarisTrackerTool_h
 #define __igstkPolarisTrackerTool_h
 
+
+#include "igstk_export.h"
+
 #include "igstkTrackerTool.h"
 
 namespace igstk
@@ -52,7 +55,7 @@ class PolarisTracker;
   *
   */
 
-class PolarisTrackerTool : public TrackerTool
+class IGSTK_EXPORT PolarisTrackerTool : public TrackerTool
 {
 public:
 

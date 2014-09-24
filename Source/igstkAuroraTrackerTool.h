@@ -18,6 +18,8 @@
 #ifndef __igstkAuroraTrackerTool_h
 #define __igstkAuroraTrackerTool_h
 
+#include "igstk_export.h"
+
 #include "igstkTrackerTool.h"
 
 namespace igstk
@@ -47,7 +49,7 @@ class AuroraTracker;
   *
   */
 
-class AuroraTrackerTool : public TrackerTool
+class IGSTK_EXPORT AuroraTrackerTool : public TrackerTool
 {
 public:
 

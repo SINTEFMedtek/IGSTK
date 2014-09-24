@@ -18,6 +18,8 @@
 #ifndef __igstkTransform_h
 #define __igstkTransform_h
 
+#include "igstk_export.h"
+
 #include "igstkTransformBase.h"
 
 #include "itkVector.h"
@@ -54,7 +56,7 @@ namespace igstk
  * \sa TimeStamp
  *
  * */
-  class Transform : public TransformBase
+  class IGSTK_EXPORT Transform : public TransformBase
 {
 public:
 

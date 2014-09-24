@@ -18,6 +18,8 @@
 #ifndef __igstkFrame_h
 #define __igstkFrame_h
 
+#include "igstk_export.h"
+
 #include "itkVector.h"
 #include "itkVersor.h"
 
@@ -46,7 +48,7 @@ namespace igstk
  * \sa TimeStamp
  *
  * */
-class Frame
+class IGSTK_EXPORT Frame
 {
 public:
 

@@ -18,6 +18,8 @@
 #ifndef __igstkSerialCommunicationForPosix_h
 #define __igstkSerialCommunicationForPosix_h
 
+#include "igstk_export.h"
+
 #include "igstkSerialCommunication.h"
 
 namespace igstk
@@ -38,7 +40,7 @@ namespace igstk
  * \ingroup SerialCommunication
  */
 
-class SerialCommunicationForPosix : public SerialCommunication
+class IGSTK_EXPORT SerialCommunicationForPosix : public SerialCommunication
 {
 public:
 

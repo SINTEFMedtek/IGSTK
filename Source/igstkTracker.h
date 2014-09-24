@@ -18,6 +18,8 @@
 #ifndef __igstkTracker_h
 #define __igstkTracker_h
 
+#include "igstk_export.h"
+
 #include <vector>
 #include <map>
 
@@ -93,7 +95,7 @@ igstkEventMacro( TrackerToolTransformUpdateEvent,          TrackerEvent);
  *  \ingroup Tracker
  */
 
-class Tracker : public Object
+class IGSTK_EXPORT Tracker : public Object
 {
 
 public:

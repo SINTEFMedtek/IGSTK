@@ -18,6 +18,9 @@
 #ifndef __igstkNDITracker_h
 #define __igstkNDITracker_h
 
+
+#include "igstk_export.h"
+
 #include "igstkSerialCommunication.h"
 #include "igstkNDICommandInterpreter.h"
 #include "igstkTrackerTool.h"
@@ -32,7 +35,7 @@ namespace igstk
   *
   */
 
-class NDITracker : public Tracker
+class IGSTK_EXPORT NDITracker : public Tracker
 {
 public:
 

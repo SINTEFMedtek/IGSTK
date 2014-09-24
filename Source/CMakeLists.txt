@@ -3,6 +3,8 @@
 #
 # The header files
 
+include(GenerateExportHeader)
+
 SET(IGSTK_HEADS
 #  igstkUSImageObject.h
 #  igstkUSImageObjectRepresentation.h
@@ -529,6 +531,8 @@ ENDIF(IGSTK_USE_Ascension3DGTracker)
 
 ADD_LIBRARY(IGSTK ${IGSTK_HEADS} ${IGSTK_SRCS})
 
+GENERATE_EXPORT_HEADER(IGSTK)
+
 # Linking with the FLTK, ITK and VTK libraries
 TARGET_LINK_LIBRARIES( IGSTK
 	ITKCommon
@@ -582,4 +586,9 @@ FILE(GLOB __files2 "${CMAKE_CURRENT_SOURCE_DIR}/*.txx")
 
 INSTALL(FILES ${__files1} ${__files2}
    DESTINATION ${IGSTK_INSTALL_INCLUDE_DIR}
+)
+
+INSTALL(FILES
+    ${PROJECT_BINARY_DIR}/igstk_export.h
+    DESTINATION ${IGSTK_INSTALL_INCLUDE_DIR}
 )

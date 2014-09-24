@@ -17,6 +17,7 @@
 #ifndef __igstkObject_h
 #define __igstkObject_h
 
+#include "igstk_export.h"
 
 #include "itkObject.h"
 #include "itkLogger.h"
@@ -24,6 +25,7 @@
 #include "igstkLogger.h"
 #include "igstkMacros.h"
 
+#include "igstk_export.h"
 
 namespace igstk
 {
@@ -37,7 +39,7 @@ namespace igstk
  *
  */
 
-class Object  : public ::itk::Object
+class IGSTK_EXPORT Object  : public ::itk::Object
 {
  
 public: 
