@@ -556,7 +556,8 @@ TARGET_LINK_LIBRARIES( IGSTK
 #	ITKIOGIPL
 	vtkRenderingCore
 	vtkRenderingFreeType
-	vtkRenderingFreeTypeOpenGL
+#	vtkRenderingFreeTypeOpenGL
+	vtkRenderingOpenGL
 	vtkInteractionStyle
 #    vtkRendering vtkGraphics vtkHybrid vtkImaging
 #	vtkIO
