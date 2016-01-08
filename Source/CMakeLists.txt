@@ -526,6 +526,13 @@ IF(IGSTK_USE_Ascension3DGTracker)
   SET(EXTRA_LIBS ${EXTRA_LIBS} ${ATC_LIBRARY})
 ENDIF(IGSTK_USE_Ascension3DGTracker)
 
+# Add the correct version of the VTK OpenGL library
+IF(VTK_RENDERING_BACKEND STREQUAL "OpenGL2")
+  SET(EXTRA_LIBS ${EXTRA_LIBS} vtkRenderingOpenGL2)
+ELSE()
+  SET(EXTRA_LIBS ${EXTRA_LIBS} vtkRenderingOpenGL)
+ENDIF()
+
 
 # Adding the IGSTK library
 
@@ -557,7 +564,8 @@ TARGET_LINK_LIBRARIES( IGSTK
 	vtkRenderingCore
 	vtkRenderingFreeType
 #	vtkRenderingFreeTypeOpenGL
-	vtkRenderingOpenGL
+#	vtkRenderingOpenGL
+#	vtkRenderingOpenGL2
 	vtkInteractionStyle
 #    vtkRendering vtkGraphics vtkHybrid vtkImaging
 #	vtkIO
