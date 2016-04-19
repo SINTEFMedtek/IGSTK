@@ -51,6 +51,19 @@ public:
     * object to the tracker object. */
   void SetCommunication( CommunicationType *communication );
 
+  /** Additional data for one tracking event, one tool*/
+  struct TrackingSampleInfo
+  {
+	  TimeStamp m_TimeStamp;
+	  // detailed info: See NDI docs on command TX
+	  double m_Error;
+	  int m_FrameNumber;
+	  int m_PortStatus;
+	  int m_ToolInformation;
+	  std::vector<int> m_MarkerInformation;
+  };
+  std::map<std::string,TrackingSampleInfo> GetTrackingSampleInfo() const { return m_ToolInfo; }
+
 protected:
 
   NDITracker(void);
@@ -151,6 +164,11 @@ private:
                                 TrackerToolTransformContainerType; 
 
   TrackerToolTransformContainerType     m_ToolTransformBuffer;
+
+  bool IsNewData(const std::map<std::string,TrackingSampleInfo>& old, const std::map<std::string,TrackingSampleInfo>& current);
+  std::map<std::string,TrackingSampleInfo> m_ToolInfoBuffer; // mutexed, updated by thread
+  std::map<std::string,TrackingSampleInfo> m_ToolInfo; // outside thread, accessible from API
+  //std::map<std::string,TrackingSampleInfo> m_ToolInfoBufferPrevious;
 
   /** Port handle of tracker tool to be added */
   int m_PortHandleToBeAdded;

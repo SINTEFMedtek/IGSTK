@@ -230,6 +230,21 @@ NDITracker::ResultType NDITracker::InternalUpdateStatus()
   igstkLogMacro( DEBUG, 
     "igstk::NDITracker::InternalUpdateStatus called ...\n");
 
+  m_BufferLock->Lock();
+  if (this->IsNewData(m_ToolInfo, m_ToolInfoBuffer))
+    {
+    m_ToolInfo = m_ToolInfoBuffer;
+//	std::cout << "set new transform" << std::endl;
+	m_BufferLock->Unlock();
+    }
+  else
+   {
+//   std::cout << "ignored new transform" << std::endl;
+   m_BufferLock->Unlock();
+   return SUCCESS;
+   }
+
+
   // these flags are set for tools that can be used for tracking
   const unsigned long mflags = (CommandInterpreterType::NDI_TOOL_IN_PORT |
                                 CommandInterpreterType::NDI_INITIALIZED |
@@ -330,6 +345,23 @@ NDITracker::ResultType NDITracker::InternalUpdateStatus()
   return SUCCESS;
 }
 
+bool NDITracker::IsNewData(const std::map<std::string,TrackingSampleInfo>& old, const std::map<std::string,TrackingSampleInfo>& current)
+{
+	if (old.size()!=current.size())
+		return true;
+
+	for (std::map<std::string,TrackingSampleInfo>::const_iterator i=old.begin(); i!=old.end(); ++i)
+	{
+		std::map<std::string,TrackingSampleInfo>::const_iterator c = current.find(i->first);
+		if (c==current.end())
+				return true;
+		if (i->second.m_FrameNumber != c->second.m_FrameNumber)
+			return true;
+	}
+
+	return false;
+}
+
 /** Update the m_StatusBuffer and the transforms. 
     This function is called by a separate thread. */
 NDITracker::ResultType NDITracker::InternalThreadedUpdateStatus( void )
@@ -338,7 +370,12 @@ NDITracker::ResultType NDITracker::InternalThreadedUpdateStatus( void )
                  "called ...\n");
 
   // get the transforms for all tools from the NDI
-  m_CommandInterpreter->TX(CommandInterpreterType::NDI_XFORMS_AND_STATUS);
+//  m_CommandInterpreter->TX(CommandInterpreterType::NDI_XFORMS_AND_STATUS);
+  m_CommandInterpreter->TX(
+		  CommandInterpreterType::NDI_XFORMS_AND_STATUS |
+		  CommandInterpreterType::NDI_ADDITIONAL_INFO |
+		  CommandInterpreterType::NDI_INCLUDE_OUT_OF_VOLUME
+		  );
 
   ResultType result = this->CheckError(m_CommandInterpreter);
 
@@ -363,14 +400,15 @@ NDITracker::ResultType NDITracker::InternalThreadedUpdateStatus( void )
 
   if (result == SUCCESS)
     {
+//	std::cout << "receive " << std::endl;
 
     typedef PortHandleContainerType::iterator  IteratorType;
-
     IteratorType inputItr = m_PortHandleContainer.begin();
     IteratorType inputEnd = m_PortHandleContainer.end();
 
     while( inputItr != inputEnd )
       {
+      std::string key = inputItr->first;
       m_ToolAbsentStatusContainer[inputItr->first] = 0;
       m_ToolStatusContainer[inputItr->first] = 0;
  
@@ -388,6 +426,18 @@ NDITracker::ResultType NDITracker::InternalThreadedUpdateStatus( void )
 
       const int absent = (tstatus != CommandInterpreterType::NDI_VALID);
       const int status = m_CommandInterpreter->GetTXPortStatus(ph);
+      unsigned int frame = m_CommandInterpreter->GetTXFrame(ph);
+//      std::cout << "  frame " << frame << std::endl;
+      m_ToolInfoBuffer[key].m_FrameNumber = frame;
+      m_ToolInfoBuffer[key].m_Error = transformRecorded[7];
+      m_ToolInfoBuffer[key].m_TimeStamp.SetStartTimeNowAndExpireAfter(0);
+      m_ToolInfoBuffer[key].m_PortStatus = m_CommandInterpreter->GetTXPortStatus(ph);
+      m_ToolInfoBuffer[key].m_ToolInformation = m_CommandInterpreter->GetTXToolInfo(ph);
+      m_ToolInfoBuffer[key].m_MarkerInformation.resize(20);
+	  for (unsigned i=0; i<m_ToolInfoBuffer[key].m_MarkerInformation.size(); ++i)
+	  {
+		  m_ToolInfoBuffer[key].m_MarkerInformation[i] = m_CommandInterpreter->GetTXMarkerInfo(ph,i);
+	  }
 
       if (!absent)
         {
