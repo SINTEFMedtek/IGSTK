@@ -427,10 +427,12 @@ NDITracker::ResultType NDITracker::InternalThreadedUpdateStatus( void )
       const int absent = (tstatus != CommandInterpreterType::NDI_VALID);
       const int status = m_CommandInterpreter->GetTXPortStatus(ph);
       unsigned int frame = m_CommandInterpreter->GetTXFrame(ph);
-//      std::cout << "  frame " << frame << std::endl;
+      TimeStamp timeStamp;
+      timeStamp.SetStartTimeNowAndExpireAfter(0);
+
       m_ToolInfoBuffer[key].m_FrameNumber = frame;
       m_ToolInfoBuffer[key].m_Error = transformRecorded[7];
-      m_ToolInfoBuffer[key].m_TimeStamp.SetStartTimeNowAndExpireAfter(0);
+      m_ToolInfoBuffer[key].m_TimeStamp = timeStamp.GetStartTime();
       m_ToolInfoBuffer[key].m_PortStatus = m_CommandInterpreter->GetTXPortStatus(ph);
       m_ToolInfoBuffer[key].m_ToolInformation = m_CommandInterpreter->GetTXToolInfo(ph);
       m_ToolInfoBuffer[key].m_MarkerInformation.resize(20);

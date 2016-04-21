@@ -54,7 +54,7 @@ public:
   /** Additional data for one tracking event, one tool*/
   struct TrackingSampleInfo
   {
-	  TimeStamp m_TimeStamp;
+	  double m_TimeStamp;
 	  // detailed info: See NDI docs on command TX
 	  double m_Error;
 	  int m_FrameNumber;
