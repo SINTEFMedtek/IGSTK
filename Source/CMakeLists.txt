@@ -543,6 +543,7 @@ GENERATE_EXPORT_HEADER(IGSTK)
 # Linking with the FLTK, ITK and VTK libraries
 TARGET_LINK_LIBRARIES( IGSTK
 	ITKCommon
+  ITKTransform
 #	ITKOptimizers
 #	ITKIOMeta
 #	ITKIOXML
