@@ -18,6 +18,9 @@
 #ifndef __igstkMicronTracker_h
 #define __igstkMicronTracker_h
 
+
+#include "igstk_export.h"
+
 #ifdef _MSC_VER
 #pragma warning ( disable : 4018 )
 //Warning about: identifier was truncated to '255' characters in the debug
@@ -57,7 +60,7 @@ namespace igstk {
  * \ingroup Tracker
  */
 
-class MicronTracker : public Tracker
+class IGSTK_EXPORT MicronTracker : public Tracker
 {
 public:
   /** Macro with standard traits declarations. */

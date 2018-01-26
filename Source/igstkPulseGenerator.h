@@ -19,6 +19,9 @@
 #define __igstkPulseGenerator_h
 
 
+#include "igstk_export.h"
+
+
 #include "igstkObject.h"
 #include "igstkMacros.h"
 #include "igstkStateMachine.h"
@@ -46,7 +49,7 @@ namespace igstk
  *
  */
 
-class PulseGenerator  : public Object
+class IGSTK_EXPORT PulseGenerator  : public Object
 {
  
 public: 

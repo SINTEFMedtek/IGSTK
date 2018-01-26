@@ -19,6 +19,9 @@
 #ifndef __igstkRealTimeClock_h
 #define __igstkRealTimeClock_h
 
+#include "igstk_export.h"
+
+
 #include "itkIndent.h"
 
 namespace igstk
@@ -33,7 +36,7 @@ namespace igstk
  * \author Hee-Su Kim, Compute Science Dept. Kyungpook National University,
   Copyright (c) ISC  Insight Software Consortium.  All rights reserved.
  */
-class RealTimeClock 
+class IGSTK_EXPORT RealTimeClock
 {
   
 public:

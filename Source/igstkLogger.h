@@ -17,6 +17,8 @@
 #ifndef __igstkLogger_h
 #define __igstkLogger_h
 
+#include "igstk_export.h"
+
 #include "itkLogger.h"
 #include "igstkMacros.h"
 #include "itkObject.h"
@@ -33,7 +35,7 @@ namespace igstk
  *  ShouldBuildMessage API which enables lazy evaluation of
  *  messages passed to a logger through the logging macros.
  */
-class Logger : public ::itk::Logger
+class IGSTK_EXPORT Logger : public ::itk::Logger
 {
 public:
   /** General Typedefs. */

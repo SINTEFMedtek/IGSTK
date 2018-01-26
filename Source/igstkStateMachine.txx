@@ -483,7 +483,7 @@ StateMachine< TClass >
 template<class TClass>
 void
 StateMachine< TClass >
-::ExportDescription( OutputStreamType & ostr, bool skipLoops=false ) const
+::ExportDescription( OutputStreamType & ostr, bool skipLoops ) const
 {
   ostr << "digraph G {" << std::endl;
 
@@ -537,7 +537,7 @@ StateMachine< TClass >
 template<class TClass>
 void
 StateMachine< TClass >
-::ExportDescriptionToLTS( OutputStreamType & ostr, bool skipLoops=false ) const
+::ExportDescriptionToLTS( OutputStreamType & ostr, bool skipLoops ) const
 {
   // Export all the transitions between states
   int out_count = 0;

@@ -1386,7 +1386,7 @@ private:
   char m_TXFrame[NDI_MAX_HANDLES][8];
 
   /** TX with option NDI_ADDITIONAL_INFO */
-  char m_TXInformation[NDI_MAX_HANDLES][12];
+  char m_TXInformation[NDI_MAX_HANDLES][22];
 
   /** TX with option NDI_SINGLE_STRAY */  
   char m_TXSingleStray[NDI_MAX_HANDLES][24];

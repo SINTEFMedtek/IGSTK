@@ -18,6 +18,9 @@
 #ifndef __igstkSerialCommunication_h
 #define __igstkSerialCommunication_h
 
+
+#include "igstk_export.h"
+
 // Disabling warning C4355: 'this' : used in base member initializer list
 #if defined(_MSC_VER)
 #pragma warning ( disable : 4355 )
@@ -60,7 +63,7 @@ namespace igstk
  * \ingroup Communication
  */
 
-class SerialCommunication : public Communication
+class IGSTK_EXPORT SerialCommunication : public Communication
 {
 public:
 

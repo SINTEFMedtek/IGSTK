@@ -18,6 +18,9 @@
 #ifndef __igstkNDITracker_h
 #define __igstkNDITracker_h
 
+
+#include "igstk_export.h"
+
 #include "igstkSerialCommunication.h"
 #include "igstkNDICommandInterpreter.h"
 #include "igstkTrackerTool.h"
@@ -32,7 +35,7 @@ namespace igstk
   *
   */
 
-class NDITracker : public Tracker
+class IGSTK_EXPORT NDITracker : public Tracker
 {
 public:
 
@@ -47,6 +50,19 @@ public:
   /** The SetCommunication method is used to attach a communication
     * object to the tracker object. */
   void SetCommunication( CommunicationType *communication );
+
+  /** Additional data for one tracking event, one tool*/
+  struct TrackingSampleInfo
+  {
+	  double m_TimeStamp;
+	  // detailed info: See NDI docs on command TX
+	  double m_Error;
+	  int m_FrameNumber;
+	  int m_PortStatus;
+	  int m_ToolInformation;
+	  std::vector<int> m_MarkerInformation;
+  };
+  std::map<std::string,TrackingSampleInfo> GetTrackingSampleInfo() const { return m_ToolInfo; }
 
 protected:
 
@@ -148,6 +164,11 @@ private:
                                 TrackerToolTransformContainerType; 
 
   TrackerToolTransformContainerType     m_ToolTransformBuffer;
+
+  bool IsNewData(const std::map<std::string,TrackingSampleInfo>& old, const std::map<std::string,TrackingSampleInfo>& current);
+  std::map<std::string,TrackingSampleInfo> m_ToolInfoBuffer; // mutexed, updated by thread
+  std::map<std::string,TrackingSampleInfo> m_ToolInfo; // outside thread, accessible from API
+  //std::map<std::string,TrackingSampleInfo> m_ToolInfoBufferPrevious;
 
   /** Port handle of tracker tool to be added */
   int m_PortHandleToBeAdded;

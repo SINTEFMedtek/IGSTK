@@ -18,6 +18,8 @@
 #ifndef __igstkTrackerTool_h
 #define __igstkTrackerTool_h
 
+#include "igstk_export.h"
+
 #include "igstkObject.h"
 #include "igstkTransform.h"
 #include "igstkMacros.h"
@@ -69,7 +71,7 @@ class Tracker;
   * 
   */
 
-class TrackerTool : public Object
+class IGSTK_EXPORT TrackerTool : public Object
 {
 public:
 

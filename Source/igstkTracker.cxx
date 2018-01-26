@@ -298,7 +298,7 @@ Tracker::Tracker(void) :  m_StateMachine( this )
 
   // This is update rate for sending tracking information to the
   // spatial objects, it should be set to at least 30 Hz
-  const double DEFAULT_REFRESH_RATE = 30.0;
+  const double DEFAULT_REFRESH_RATE = 60.0;
   m_PulseGenerator->RequestSetFrequency( DEFAULT_REFRESH_RATE );
 
   // This is the time period for which transformation should be

@@ -18,6 +18,8 @@
 #ifndef __igstkCoordinateSystem_h
 #define __igstkCoordinateSystem_h
 
+#include "igstk_export.h"
+
 #include "igstkObject.h"
 #include "igstkStateMachine.h"
 #include "igstkTransform.h"
@@ -49,7 +51,7 @@ namespace igstk
  *  
  * \ingroup Object
  */
-class CoordinateSystem;
+class IGSTK_EXPORT CoordinateSystem;
 
 namespace Friends 
 {
@@ -64,7 +66,7 @@ namespace Friends
  * TrackerTool, and View.
  *
  */ 
-class CoordinateSystemHelper
+class IGSTK_EXPORT CoordinateSystemHelper
 {
 public:
   /** Templated method to extract the CoordinateSystem from a holder
@@ -82,7 +84,7 @@ public:
 } // end of Friends namespace 
 
 
-class CoordinateSystem : public Object
+class IGSTK_EXPORT CoordinateSystem : public Object
 {
 public: 
 

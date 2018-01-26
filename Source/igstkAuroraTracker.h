@@ -18,6 +18,8 @@
 #ifndef __igstkAuroraTracker_h
 #define __igstkAuroraTracker_h
 
+#include "igstk_export.h"
+
 #include "igstkAuroraTrackerTool.h"
 #include "igstkNDITracker.h"
 
@@ -45,7 +47,7 @@ const unsigned int MAX_WIRED_PORT_NUMBER = 4;
 const unsigned int NUMBER_OF_ATTEMPTS = 256;
 const unsigned int MAX_CHANNEL_NUMBER = 1;
 
-class AuroraTracker : public NDITracker
+class IGSTK_EXPORT AuroraTracker : public NDITracker
 {
 public:
 

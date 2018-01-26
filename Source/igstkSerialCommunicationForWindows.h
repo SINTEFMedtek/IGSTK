@@ -18,6 +18,9 @@
 #ifndef __igstkSerialCommunicationForWindows_h
 #define __igstkSerialCommunicationForWindows_h
 
+
+#include "igstk_export.h"
+
 #include <windows.h>
 
 #include "igstkSerialCommunication.h"
@@ -41,7 +44,7 @@ namespace igstk
  * \ingroup SerialCommunication
  */
 
-class SerialCommunicationForWindows : public SerialCommunication
+class IGSTK_EXPORT SerialCommunicationForWindows : public SerialCommunication
 {
 public:
 

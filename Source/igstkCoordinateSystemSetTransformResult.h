@@ -18,6 +18,8 @@
 #ifndef __igstkCoordinateSystemSetTransformResult_h
 #define __igstkCoordinateSystemSetTransformResult_h
 
+#include "igstk_export.h"
+
 #include "igstkCoordinateSystem.h"
 
 namespace igstk
@@ -35,7 +37,7 @@ namespace igstk
  *  \ingroup CoordinateSystem
  *
  */
-class CoordinateSystemSetTransformResult
+class IGSTK_EXPORT CoordinateSystemSetTransformResult
 {
 public:
 

@@ -44,7 +44,7 @@ set( ITK_VERSION ${ITK_VERSION_MAJOR}.${ITK_VERSION_MINOR}.${ITK_VERSION_PATCH} 
 if( ${ITK_VERSION} VERSION_LESS ${ITK_MIN_VERSION} )
   message( FATAL_ERROR "This application requires ITK version ${ITK_MIN_VERSION} or later. Provided version is ${ITK_VERSION}.")
 else()
-  INCLUDE (${USE_ITK_FILE})
+  INCLUDE (${ITK_USE_FILE})
 endif()
 
 #
@@ -58,7 +58,7 @@ set( VTK_VERSION ${VTK_VERSION_MAJOR}.${VTK_VERSION_MINOR}.${VTK_VERSION_PATCH} 
 if( ${VTK_VERSION} VERSION_LESS ${VTK_MIN_VERSION} )
   message( FATAL_ERROR "This application requires VTK version ${VTK_MIN_VERSION} or later. Provided version is ${VTK_VERSION}.")
 else()
-  INCLUDE (${USE_VTK_FILE})
+  INCLUDE (${VTK_USE_FILE})
 endif()
 
 #

@@ -27,7 +27,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-#include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <time.h>
 
@@ -684,9 +684,8 @@ void SerialCommunication::PrintSelf( std::ostream& os,
 
   os << indent << "Capture: " << m_Capture << std::endl;
   os << indent << "CaptureFileName: " << m_CaptureFileName << std::endl;
-  os << indent << "CaptureFileStream: " << m_CaptureFileStream << std::endl;
-  os << indent << "CaptureMessageNumber: " << m_CaptureMessageNumber
-     << std::endl;
+  os << indent << "CaptureFileStream: " << m_CaptureFileStream.rdbuf() << std::endl;
+  os << indent << "CaptureMessageNumber: " << m_CaptureMessageNumber << std::endl;
 }
 
 
