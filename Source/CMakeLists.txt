@@ -526,11 +526,18 @@ IF(IGSTK_USE_Ascension3DGTracker)
   SET(EXTRA_LIBS ${EXTRA_LIBS} ${ATC_LIBRARY})
 ENDIF(IGSTK_USE_Ascension3DGTracker)
 
+
+if(VTK_VERSION VERSION_LESS 8.9.0)
+  set(VTK_PREFIX vtk)
+else()
+  set(VTK_PREFIX VTK::)
+endif()
+
 # Add the correct version of the VTK OpenGL library
 IF(VTK_RENDERING_BACKEND STREQUAL "OpenGL2")
-  SET(EXTRA_LIBS ${EXTRA_LIBS} vtkRenderingOpenGL2)
+  SET(EXTRA_LIBS ${EXTRA_LIBS} ${VTK_PREFIX}RenderingOpenGL2)
 ELSE()
-  SET(EXTRA_LIBS ${EXTRA_LIBS} vtkRenderingOpenGL)
+  SET(EXTRA_LIBS ${EXTRA_LIBS} ${VTK_PREFIX}RenderingOpenGL)
 ENDIF()
 
 
@@ -539,6 +546,7 @@ ENDIF()
 ADD_LIBRARY(IGSTK ${IGSTK_HEADS} ${IGSTK_SRCS})
 
 GENERATE_EXPORT_HEADER(IGSTK)
+
 
 # Linking with the FLTK, ITK and VTK libraries
 TARGET_LINK_LIBRARIES( IGSTK
@@ -562,18 +570,22 @@ TARGET_LINK_LIBRARIES( IGSTK
 #	ITKIONIFTI
 #	ITKIONRRD
 #	ITKIOGIPL
-	vtkRenderingCore
-	vtkRenderingFreeType
+#	vtkRenderingCore
+#	vtkRenderingFreeType
 #	vtkRenderingFreeTypeOpenGL
 #	vtkRenderingOpenGL
 #	vtkRenderingOpenGL2
-	vtkInteractionStyle
+#	vtkInteractionStyle
 #    vtkRendering vtkGraphics vtkHybrid vtkImaging
 #	vtkIO
 #	vtkFiltering
 #	vtkCommon
-	vtksys
-	${EXTRA_LIBS}
+#        vtksys
+        ${VTK_PREFIX}CommonMath
+        ${VTK_PREFIX}CommonDataModel
+        ${VTK_PREFIX}RenderingCore
+        ${VTK_LIBRARIES}
+#	${EXTRA_LIBS}
 )
 
 # Apply user-defined properties to the library target.
