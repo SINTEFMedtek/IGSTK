@@ -516,7 +516,7 @@ public:
    * \param mode  one of NDI_STATIC 'S', NDI_DYNAMIC 'D' or NDI_BUTTON_BOX 'B'
    */
   void PENA(int port, int mode) {
-    cout << "PENA "<< port + INCR << "|" << mode << endl;
+    std::cout << "PENA "<< port + INCR << "|" << mode << std::endl;
     this->Command("PENA %d%c", port + INCR , mode); }
 
   /** Ask the device for information about a tool handle.
